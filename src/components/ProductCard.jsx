@@ -1,5 +1,5 @@
-function ProductCard({ product }) {
-  const { title, price, category, thumbnail } = product;
+function ProductCard({ product, onEdit, onDelete }) {
+  const { id, title, price, category, thumbnail, isLocal } = product;
 
   return (
     <article className="product-card">
@@ -7,6 +7,13 @@ function ProductCard({ product }) {
       <h3>{title}</h3>
       <p className="category">{category}</p>
       <p className="price">{price} USD</p>
+      {isLocal && <span className="badge">adăugat local (simulat)</span>}
+      <div className="actions">
+        <button onClick={() => onEdit(id)}>Editează</button>
+        <button className="danger" onClick={() => onDelete(id)}>
+          Șterge
+        </button>
+      </div>
     </article>
   );
 }
